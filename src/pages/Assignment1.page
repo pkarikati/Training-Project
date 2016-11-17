@@ -1,0 +1,181 @@
+<apex:page showHeader="false" standardStylesheets="false" sidebar="false" applyHtmlTag="false" applyBodyTag="false" docType="html-5.0">
+
+<html xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" lang="en">
+
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge" />
+  <title>Salesforce Lightning Design System Trailhead Module</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <apex:stylesheet value="{!URLFOR($Resource.SLDS, 'assets/styles/salesforce-lightning-design-system-vf.min.css')}" />
+</head>   
+
+<apex:remoteObjects >
+  <apex:remoteObjectModel name="Lead" fields="Id,Name,Email,street,city,country,LastModifiedDate"/>
+</apex:remoteObjects>
+
+<body>
+
+  <!-- REQUIRED SLDS WRAPPER -->
+  <div class="scope1">
+
+    <!-- MASTHEAD -->
+    
+    <!-- / MASTHEAD -->
+
+    <!-- PAGE HEADER -->
+<div class="slds-page-header" role="banner">
+  <div class="slds-grid">
+    <div class="slds-col slds-has-flexi-truncate">
+      <!-- HEADING AREA -->
+      
+      <h1 class="slds-page-header__title slds-truncate" title="My Leads">Lead Management</h1>
+      <!-- / HEADING AREA -->
+    </div>
+    
+  </div>
+  <div class="slds-grid">
+    <div class="slds-col slds-align-bottom slds-p-top--small">
+
+    </div>
+  </div>
+</div>
+<!-- / PAGE HEADER -->
+
+    <!-- PRIMARY CONTENT WRAPPER -->
+<!--<div class="myapp">
+
+  <ul class="slds-list--dotted slds-m-top--large">
+    <li>Lead 1</li>
+    <li>Lead 2</li>
+    <li>Lead 3</li>
+    <li>Lead 4</li>
+    <li>Lead 5</li>
+    <li>Lead 6</li>
+    <li>Lead 7</li>
+    <li>Lead 8</li>
+    <li>Lead 9</li>
+    <li>Lead 10</li>
+  </ul>
+
+</div>--!>
+<!-- PRIMARY CONTENT WRAPPER -->
+<!-- PRIMARY CONTENT WRAPPER -->
+<div class="myapp">
+
+  <!-- CREATE NEW Lead -->
+  <div aria-labelledby="newLeadform">
+
+    
+    <!-- CREATE NEW Lead FORM -->
+
+  </div>
+  <!-- / CREATE NEW Lead -->
+
+
+  <!-- Lead LIST TABLE -->
+  <div id="Lead-list" class="slds-p-vertical--medium"></div>
+  <!-- / Lead LIST TABLE -->
+
+</div>
+<!-- / PRIMARY CONTENT WRAPPER -->
+
+   <!-- FOOTER -->
+
+<!-- / FOOTER -->
+  </div>
+  <!-- / REQUIRED SLDS WRAPPER -->
+
+  <!-- JAVASCRIPT -->
+<script>
+  (function() {
+    var Lead = new SObjectModel.Lead();
+    var outputDiv = document.getElementById('Lead-list');
+
+    var updateOutputDiv = function() {
+
+      Lead.retrieve(
+        { orderby: [{ LastModifiedDate: 'DESC' }], limit: 10 },
+        function(error, records) {
+          if (error) {
+            alert(error.message);
+          } else {
+            // create data table
+            var dataTable = document.createElement('table');
+            dataTable.className = 'slds-table slds-table--bordered slds-table--cell-buffer slds-no-row-hover';
+
+            // add header row
+            var tableHeader = dataTable.createTHead();
+            var tableHeaderRow = tableHeader.insertRow();
+
+            var tableHeaderRowCell1 = tableHeaderRow.insertCell(0);
+            tableHeaderRowCell1.appendChild(document.createTextNode('Name'));
+            tableHeaderRowCell1.setAttribute('scope', 'col');
+            tableHeaderRowCell1.setAttribute('class', 'slds-text-heading--label');
+
+            var tableHeaderRowCell2 = tableHeaderRow.insertCell(1);
+            tableHeaderRowCell2.appendChild(document.createTextNode('Email'));
+            tableHeaderRowCell2.setAttribute('scope', 'col');
+            tableHeaderRowCell2.setAttribute('class', 'slds-text-heading--label');
+            
+            var tableHeaderRowCell3 = tableHeaderRow.insertCell(2);
+            tableHeaderRowCell3.appendChild(document.createTextNode('Address'));
+            tableHeaderRowCell3.setAttribute('scope', 'col');
+            tableHeaderRowCell3.setAttribute('class', 'slds-text-heading--label');
+
+            // build table body
+            var tableBody = dataTable.appendChild(document.createElement('tbody'))
+            var dataRow, dataRowCell1, dataRowCell2, recordName, recordId;
+            records.forEach(function(record) {
+              dataRow = tableBody.insertRow();
+
+              dataRowCell1 = dataRow.insertCell(0);
+              recordName = document.createTextNode(record.get('Name'));
+              dataRowCell1.appendChild(recordName);
+              
+              dataRowCell2 = dataRow.insertCell(1);
+              recordName = document.createTextNode(record.get('Email'));
+              dataRowCell2.appendChild(recordName);
+
+              dataRowCell3 = dataRow.insertCell(2);
+              recordId = document.createTextNode(record.get('lead.city+lead.street+lead.country'));
+              dataRowCell3.appendChild(recordId);
+            });
+
+            if (outputDiv.firstChild) {
+              // replace table if it already exists
+              // see later in tutorial
+              outputDiv.replaceChild(dataTable, outputDiv.firstChild);
+            } else {
+              outputDiv.appendChild(dataTable);
+            }
+          }
+        }
+      );
+    }
+    updateOutputDiv();
+    var LeadForm = document.getElementById('add-Lead-form');
+var LeadNameField = document.getElementById('Lead-name');
+
+var createLead = function() {
+  var Lead = new SObjectModel.Lead();
+  Lead.create({ Name: LeadNameField.value }, function(error, records) {
+    if (error) {
+      alert(error.message);
+    } else {
+      updateOutputDiv();
+      LeadNameField.value = '';
+    }
+  });
+}
+document.addEventListener('submit', function(e) {
+  e.preventDefault();
+  createLead();
+});
+  })();
+</script>
+<!-- / JAVASCRIPT -->
+</body>
+</html>
+</apex:page>

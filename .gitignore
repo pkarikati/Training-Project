@@ -1,0 +1,8 @@
+*.sublime-project
+Training Project.sublime-workspace
+config/.debug
+config/.describe
+config/.lightning
+config/.local_store
+config/.org_metadata
+config/.settings

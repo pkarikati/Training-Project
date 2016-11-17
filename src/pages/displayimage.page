@@ -1,0 +1,3 @@
+<apex:page showHeader="false" >
+  <apex:image id="Salesforce" value="http://www.underconsideration.com/brandnew/archives/salesforce_logo_detail.png" width="100" height="100"/>
+</apex:page>
