@@ -12,7 +12,7 @@
 </head>   
 
 <apex:remoteObjects >
-  <apex:remoteObjectModel name="Lead" fields="Id,Name,Email,street,city,country,LastModifiedDate"/>
+  <apex:remoteObjectModel name="Lead" fields="Id, Name, Email, Street, City, State, Country,PostalCode,LastModifiedDate"/>
 </apex:remoteObjects>
 
 <body>
@@ -135,12 +135,12 @@
               dataRowCell1.appendChild(recordName);
               
               dataRowCell2 = dataRow.insertCell(1);
-              recordName = document.createTextNode(record.get('Email'));
-              dataRowCell2.appendChild(recordName);
+              recordEmail = document.createTextNode(record.get('Email'));
+              dataRowCell2.appendChild(recordEmail);
 
               dataRowCell3 = dataRow.insertCell(2);
-              recordId = document.createTextNode(record.get('lead.city+lead.street+lead.country'));
-              dataRowCell3.appendChild(recordId);
+              recordAddress = document.createTextNode(((record.get('Street')==null)?'':(record.get('Street')+','))+((record.get('City')==null)?'':(record.get('City')+','))+((record.get('State')==null)?'':(record.get('State')+','))+((record.get('PostalCode')==null)?'':(record.get('PostalCode')+'  '))+((record.get('Country')==null)?'':(record.get('Country')+',')));
+              dataRowCell3.appendChild(recordAddress);
             });
 
             if (outputDiv.firstChild) {
