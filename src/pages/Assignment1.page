@@ -12,7 +12,7 @@
 </head>   
 
 <apex:remoteObjects >
-  <apex:remoteObjectModel name="Lead" fields="Id, Name, Email, Street, City, State, Country,PostalCode,LastModifiedDate"/>
+  <apex:remoteObjectModel name="Lead" fields="Id, Name, Email, Street, City, State, Country,PostalCode,LastModifiedDate,OwnerId"/>
 </apex:remoteObjects>
 
 <body>
@@ -92,15 +92,14 @@
   (function() {
     var Lead = new SObjectModel.Lead();
     var outputDiv = document.getElementById('Lead-list');
+    var userid = '{!$User.Id}';
+    const displayResults = function(error, records){
+      if(error) {
+        alert(error.message);
+      }
+      else{
 
-    var updateOutputDiv = function() {
-
-      Lead.retrieve(
-        { orderby: [{ LastModifiedDate: 'DESC' }], limit: 10 },
-        function(error, records) {
-          if (error) {
-            alert(error.message);
-          } else {
+     
             // create data table
             var dataTable = document.createElement('table');
             dataTable.className = 'slds-table slds-table--bordered slds-table--cell-buffer slds-no-row-hover';
@@ -139,7 +138,7 @@
               dataRowCell2.appendChild(recordEmail);
 
               dataRowCell3 = dataRow.insertCell(2);
-              recordAddress = document.createTextNode(((record.get('Street')==null)?'':(record.get('Street')+','))+((record.get('City')==null)?'':(record.get('City')+','))+((record.get('State')==null)?'':(record.get('State')+','))+((record.get('PostalCode')==null)?'':(record.get('PostalCode')+'  '))+((record.get('Country')==null)?'':(record.get('Country')+',')));
+              recordAddress = document.createTextNode(((record.get('Street')==null)?'':(record.get('Street')+','))+((record.get('City')==null)?'':(record.get('City')+','))+((record.get('State')==null)?'':(record.get('State')+','))+((record.get('PostalCode')==null)?'':(record.get('PostalCode')+'  '))+((record.get('Country')==null)?'':(record.get('Country')+'  ')));
               dataRowCell3.appendChild(recordAddress);
             });
 
@@ -152,28 +151,16 @@
             }
           }
         }
-      );
-    }
-    updateOutputDiv();
-    var LeadForm = document.getElementById('add-Lead-form');
-var LeadNameField = document.getElementById('Lead-name');
-
-var createLead = function() {
-  var Lead = new SObjectModel.Lead();
-  Lead.create({ Name: LeadNameField.value }, function(error, records) {
-    if (error) {
-      alert(error.message);
-    } else {
+      var updateOutputDiv = function(){
+        Lead.retrieve(
+          {where: {
+            OwnerId: {eq: userid},
+            Country: {ne: 'USA'},
+          },
+          }, displayResults);
+      }
       updateOutputDiv();
-      LeadNameField.value = '';
-    }
-  });
-}
-document.addEventListener('submit', function(e) {
-  e.preventDefault();
-  createLead();
-});
-  })();
+    })();
 </script>
 <!-- / JAVASCRIPT -->
 </body>
