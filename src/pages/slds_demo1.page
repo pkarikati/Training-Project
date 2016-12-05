@@ -2,7 +2,7 @@
 <div class="slds-media slds-media--top slds-no-space slds-grow">
   <div class="slds-media__figure">
     <span class="slds-avatar slds-avatar--big">
-      <img src="{!URLFOR($Resource.slds214, 'assets/images/avatar1.jpg')}" alt=""/>
+      <img src="{!URLFOR($Resource.SLDS, 'assets/images/avatar1.jpg')}" alt=""/>
     </span>
   </div>
   <div class="slds-text-title--caps">Salesforce Lightning Design System Trailhead Module</div>

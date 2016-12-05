@@ -1,0 +1,11 @@
+<apex:page standardController="Assignment__c">
+<apex:form >
+<apex:pageBlock >
+<apex:pageBlockSection columns="1">
+<apex:inputField value="{!Assignment__c.Name__c}"/> 
+<apex:inputField value="{!Assignment__c.Email__c}"/>
+<apex:inputField value="{!Assignment__c.Address__c}"/>
+</apex:pageBlockSection>
+</apex:pageBlock>
+</apex:form>
+    </apex:page>

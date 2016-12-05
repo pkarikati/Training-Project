@@ -1,0 +1,18 @@
+<apex:page controller="Accounts" >
+    <apex:form >
+    <apex:pageBlock >
+        <apex:pageBlockButtons location="top">
+        <apex:commandButton value="click" action="{!show}"  />
+        </apex:pageBlockButtons>
+        <apex:pageBlockTable value="{!accs}" var="a">
+            <apex:column value="{!a.Name}" />
+            <apex:column value="{!a.Industry}" />
+        
+        </apex:pageBlockTable>
+        <apex:pageBlockTable value="{!Cons}" var="c">
+            <apex:column value="{!c.LastName}" />
+        
+        </apex:pageBlockTable>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

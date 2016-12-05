@@ -1,0 +1,6 @@
+<apex:page >
+    <h2>
+        Welcome to S Nimbus 
+    </h2>
+    <img id="theImage" src="http://www.nimbusit.co.in/images/nimbus-logo-png.png" width="150" height="150"/>
+</apex:page>

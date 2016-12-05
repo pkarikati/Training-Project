@@ -1,0 +1,21 @@
+<apex:page standardController="Account" extensions="ConatctDetails" >
+    <apex:form >
+        <apex:pageBlock title="Contact Details">
+            <apex:pageBlockButtons location="top">
+            <apex:commandButton value="Get Contacts" action="{!AccountButton}" />
+            </apex:pageBlockButtons>
+            <apex:pageBlockSection >
+            <apex:inputText value="{!acc.Name}" />
+            </apex:pageBlockSection>
+            <apex:pageBlockTable value="{!cons}" var="a">
+                <apex:column value="{!a.LastName}" />
+                <apex:column value="{!a.FirstName}" />
+            </apex:pageBlockTable>
+        
+        </apex:pageBlock>
+    
+        
+     
+        
+    </apex:form>
+</apex:page>

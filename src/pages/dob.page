@@ -1,0 +1,24 @@
+<apex:page doctype="html-5.0" controller="DateofBirth">
+    <apex:form >
+        <apex:pageblock title="Calculate Age From Date of Birth">
+            <apex:pageblocksection >
+                <apex:pageblocksectionitem >
+                    <h1>
+                     Date of Birth:   
+                    </h1>
+              		<apex:inputtext onfocus="DatePicker.pickDate(true, this , false);" value="{!dob}">
+                    </apex:inputtext>
+                </apex:pageblocksectionitem>
+                    <apex:commandbutton value="Get Age" action="{!FindAge}">
+                </apex:commandbutton>
+                    <apex:pageblocksectionitem >
+                        <h1>
+                           Age:  
+                        </h1>          
+                    <apex:outputtext value="{!age}">
+                        </apex:outputtext>
+                </apex:pageblocksectionitem>           
+            </apex:pageblocksection>
+        </apex:pageblock>
+    </apex:form>   
+</apex:page>

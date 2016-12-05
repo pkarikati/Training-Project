@@ -6,13 +6,13 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge" />
   <title>Salesforce Lightning Design System Trailhead Module</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <apex:stylesheet value="{!URLFOR($Resource.slds214, 'assets/styles/salesforce-lightning-design-system-vf.min.css')}" />
+  <apex:stylesheet value="{!URLFOR($Resource.SLDS, 'assets/styles/salesforce-lightning-design-system-vf.min.css')}" />
 </head>
 
 <body>
 
   <!-- REQUIRED SLDS WRAPPER -->
-  <div class="custom scoping class">
+  <div class="scope1">
 
     <!-- MASTHEAD -->
     <p class="slds-text-heading--label slds-m-bottom--small">

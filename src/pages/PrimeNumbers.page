@@ -1,0 +1,49 @@
+<apex:page >
+  <head>
+            <title>Prime Number</title>
+            <apex:stylesheet value="{!URLFOR($Resource.SLDS090, 'assets/styles/salesforce-lightning-design-system-vf.css')}" /> 
+            <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+        </head>
+        <body>
+<apex:form >         
+                <div class="slds">              
+                        <div class="slds-grid-col">
+                          
+                                <div class="slds-form-element">
+                                    <label class="slds-form-element__label" for="startNo">Start Number</label>  
+                                                     <apex:inputText id="startNo" styleclass="slds-input"/>
+                                </div> 
+                            </div>
+
+
+                             <div class="slds-grid-col-">
+                                <div class="slds-form-element">
+                                    <label class="slds-form-element__label" for="EndNo">End Number</label>  
+                                                     <apex:inputText id="EndNo" styleclass="slds-input"/>
+
+
+                        </div>
+                        
+                        
+                </div>
+
+                <div class="slds-col--padded slds-size--1-of-1  slds-medium-size--2-of-12 slds-large-size--4-of-12">
+                                <div class="slds-form-element">
+                                    
+                                    <apex:actionStatus id="getstartedstatus"> 
+                                    <apex:facet name="stop">
+                                        <apex:commandButton id="btnsearch" value="Search" styleclass="slds-button slds-button--brand" action="{!display}" style="margin-top:20px;" rerender="ContactListpanel" status="getstartedstatus"/>                                         
+                                    </apex:facet> 
+                                    <apex:facet name="start"> 
+                                        <apex:commandButton id="btnsearchdisable" value="Searching..." disabled="true" styleclass="slds-button slds-button--brand" style="margin-top:20px;" />
+                                    </apex:facet> 
+                                    
+                                </apex:actionStatus>
+                                </div>
+                            </div>
+                        </div>
+
+            </apex:form>
+                        
+        </body>
+</apex:page>
